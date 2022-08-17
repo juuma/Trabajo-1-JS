@@ -9,7 +9,7 @@ const pizzas = [
         id: 2,
         nombre: "Pizza de Muzza",
         ingredientes: ["Muzzarella", "Tomate"],
-        precio: 600
+        precio: 500
     },
     {
         id: 3,
@@ -39,43 +39,54 @@ const pizzas = [
 
 
  // A) Las Pizzas que tengan un id impar
+function impar() {
+    const idImpar = pizzas.filter((piza) => piza.id % 2 !=0)
 
-const idImpar = pizzas.filter((piza) => piza.id % 2 !=0)
-
-console.log("Las pizzas con ID impar son:")
-for (piza of idImpar){
-    console.log(piza.nombre)
-}
+    console.log("Las pizzas con ID impar son:")
+    for (piza of idImpar){
+        console.log(piza.nombre)
+    }
+};
+impar()
 
 
 //B)¿Hay alguna pizza que valga menos de $600?
 
-const pizzamenos600 = pizzas.some( (e) => e.precio < 600);
-console.log(pizzamenos600);
+function barata() {
+    for (i=0; i<pizzas.length; i++){
+        if (pizzas[i].precio<600){
+            console.log('La ' + pizzas[i].nombre + ' Es la mas barata, Su precio es de ' + pizzas[i].precio)
+        }
+    }
+}
+barata()
 
 
 // C) Nombre de las pizzas mas precios
 
-const nombrePizzaPrecio = pizzas.map ( (pizza) => {
-    return {
-        nombre: pizza.nombre,
-        precio: pizza.precio
+function NombrePrecio () {
+    for (i=0; i<pizzas.length; i++){
+        console.log(`La "${pizzas[i].nombre}" tiene un precio de $${pizzas[i].precio}`)
     }
-})
-console.log(nombrePizzaPrecio)
+}
+
+NombrePrecio()
 
 
 //d) Todos los ingredientes de cada pizza
 
-const ingredientesPizza = pizzas.map ((pizza) =>{
-    return{
-        nombre: pizza.nombre,
-        ingrediente: pizza.ingredientes
-    }
-})
-pizzas.forEach ((pizzas) => {
-    console.log ('Las pizzas '+ pizzas.nombre + ':')
-    pizzas.ingredientes.forEach((ingrediente) => {
-        console.log('-' + ingrediente )
+function ingredientes() {
+    const ingredientesPizza = pizzas.map ((pizza) =>{
+        return{
+            nombre: pizza.nombre,
+            ingrediente: pizza.ingredientes
+        }
     })
-})
+    pizzas.forEach ((pizzas) => {
+        console.log ('Las '+ pizzas.nombre + ':')
+        pizzas.ingredientes.forEach((ingrediente) => {
+            console.log('-' + ingrediente )
+        })
+    })
+}
+ingredientes()
